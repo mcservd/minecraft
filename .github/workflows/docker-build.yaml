@@ -12,5 +12,4 @@ jobs:
         with:
           context: .
           push: false
-          build-args:
-            - MINECRAFT_VERSION=1.17.1
+          build-args: MINECRAFT_VERSION=1.17.1,BASE_IMAGE=openjdk:11.0.4-jre-slim

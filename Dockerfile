@@ -22,4 +22,4 @@ USER minecraft
 WORKDIR /opt/minecraft
 
 ENTRYPOINT ["java"]
-CMD ["-jar", "minecraft.jar"]
+CMD ["-jar", "server.jar", "--nogui"]

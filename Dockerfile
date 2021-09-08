@@ -12,7 +12,14 @@ RUN curl -o /tmp/server.jar $(curl -s `curl -s https://launchermeta.mojang.com/m
 
 FROM $BASE_IMAGE
 
-COPY --from=downloader /tmp/server.jar ./
+COPY --from=downloader /tmp/server.jar /opt/minecraft/
+
+RUN adduser --no-create-home --shell /bin/sh minecraft
+
+RUN chown minecraft:root -R /opt/minecraft
+
+USER minecraft
+WORKDIR /opt/minecraft
 
 ENTRYPOINT ["java"]
 CMD ["-jar", "minecraft.jar"]

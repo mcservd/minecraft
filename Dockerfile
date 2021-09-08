@@ -1,7 +1,7 @@
 ARG MINECRAFT_VERSION=1.17.1
 ARG BASE_IMAGE=openjdk:11.0.4-jre-slim
 
-FROM busybox:1.34 as downloader
+FROM curlimages/curl:7.78.0 as downloader
 
 RUN curl -o minecraft.jar https://mcversions.net/download/$MINECRAFT_VERSION
 

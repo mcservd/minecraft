@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=openjdk:11.0.4-jre-slim
+ARG BASE_IMAGE=openjdk:16.0-slim
 
 FROM alpine:3.14.2 as downloader
 

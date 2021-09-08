@@ -33,4 +33,4 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             MINECRAFT_VERSION=1.17.1
-            BASE_IMAGE=openjdk:11.0.4-jre-slim
+            BASE_IMAGE=openjdk:16.0-slim

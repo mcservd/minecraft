@@ -5,7 +5,7 @@ FROM busybox:1.34 as downloader
 
 RUN curl -o minecraft.jar https://mcversions.net/download/$MINECRAFT_VERSION
 
-FROM BASE_IMAGE
+FROM $BASE_IMAGE
 
 COPY --from=downloader minecraft.jar ./
 

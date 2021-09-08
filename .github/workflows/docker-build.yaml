@@ -3,7 +3,7 @@ on:
   - push
 jobs:
   Docker-Builder:
-    runs-on:
+    runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2

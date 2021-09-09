@@ -1,9 +1,12 @@
 name: Docker Build
 on:
-  - push
+  push:
+    tags:
+      - 'v*'
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  BASE_IMAGE: openjdk:16.0-slim
 jobs:
   Docker-Build-And-Push-Image:
     runs-on: ubuntu-latest
@@ -24,6 +27,11 @@ jobs:
         uses: docker/metadata-action@v3.5.0
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          flavor: |
+            latest=auto
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
       - name: Build and push Docker images
         uses: docker/build-push-action@v2.7.0
         with:
@@ -32,5 +40,5 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            MINECRAFT_VERSION=1.17.1
-            BASE_IMAGE=openjdk:16.0-slim
+            MINECRAFT_VERSION=${{ steps.meta.outputs.version }}
+            BASE_IMAGE=${{ env.BASE_IMAGE }}
